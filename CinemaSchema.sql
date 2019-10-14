@@ -23,16 +23,16 @@ CREATE TABLE peliculas
 CREATE TABLE funciones
 (
     idFuncion INTEGER NOT NULL,
-    fecha DATE,
+    Fecha DATE,
     idSala INTEGER,
     idPelicula INTEGER,
-    precio BIGINT,
+    Precio BIGINT,
     CONSTRAINT funciones_pk PRIMARY KEY(idFuncion)
 );
 
 CREATE TABLE salas
 (
-    idSala VARCHAR(0) NOT NULL,
+    idSala INTEGER NOT NULL,
     idCine INTEGER,
     Nombre INTEGER,
     CONSTRAINT salas_pk PRIMARY KEY(idSala)
@@ -43,7 +43,7 @@ CREATE TABLE tickets
     idTicket INTEGER NOT NULL,
     precioFinal BIGINT,
     idListaBoletos INTEGER,
-    fecha DATE,
+    Fecha DATE,
     CONSTRAINT tickets_pk PRIMARY KEY(idTicket)
 );
 
@@ -70,26 +70,6 @@ CREATE TABLE boletos
 
 
 -- Create FKs
-ALTER TABLE cines
-    ADD    FOREIGN KEY (idCine)
-    REFERENCES salas(idCine)
-;
-    
-ALTER TABLE peliculas
-    ADD    FOREIGN KEY (idPelicula)
-    REFERENCES funciones(idPelicula)
-;
-    
-ALTER TABLE salas
-    ADD    FOREIGN KEY (idSala)
-    REFERENCES funciones(idSala)
-;
-    
-ALTER TABLE carteleras
-    ADD    FOREIGN KEY (idPelicula)
-    REFERENCES peliculas(idPelicula)
-;
-    
 ALTER TABLE boletos
     ADD    FOREIGN KEY (idListaBoletos)
     REFERENCES listaBoletos(idListaBoletos)
@@ -103,6 +83,26 @@ ALTER TABLE boletos
 ALTER TABLE tickets
     ADD    FOREIGN KEY (idListaBoletos)
     REFERENCES listaBoletos(idListaBoletos)
+;
+    
+ALTER TABLE salas
+    ADD    FOREIGN KEY (idCine)
+    REFERENCES cines(idCine)
+;
+    
+ALTER TABLE funciones
+    ADD    FOREIGN KEY (idSala)
+    REFERENCES salas(idSala)
+;
+    
+ALTER TABLE funciones
+    ADD    FOREIGN KEY (idPelicula)
+    REFERENCES peliculas(idPelicula)
+;
+    
+ALTER TABLE carteleras
+    ADD    FOREIGN KEY (idPelicula)
+    REFERENCES peliculas(idPelicula)
 ;
     
 

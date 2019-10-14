@@ -1,2 +1,2 @@
 # CinemaTest
-Proyecto DB de prueba
+Proyecto DB de prueba para el proyecto de cinema
